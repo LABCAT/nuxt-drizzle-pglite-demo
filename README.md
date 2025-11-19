@@ -10,36 +10,37 @@ This project implements a hybrid data architecture:
 - **Frontend**: Nuxt SPA with client-side PGLite database for caching "today's data" in IndexedDB
 - **Data Sync**: Model `save()` methods persist to Postgres first via HTTP proxy, then sync to PGLite only after successful remote save
 
-## Project Structure
+## Getting Started
 
-The Nuxt application will be created in the `nuxt-drizzle-demo/` subdirectory:
+### Prerequisites
 
-```
-pglite-demo/
-├── agent/
-│   ├── AGENT_PROMPTS.md    # Agent guidelines
-│   └── TASKS.md            # Implementation tasks
-├── .cursor/
-│   └── rules/
-│       ├── architecture.mdc  # Architecture rules
-│       └── snyk_rules.mdc    # Security rules
-└── nuxt-drizzle-demo/       # Nuxt project (created in Task 1)
-    ├── server/api/          # Backend API routes
-    ├── utils/               # Client utilities
-    │   └── pgliteClient.ts  # PGLite client adapter
-    └── models/              # Model classes
-        └── Model.ts         # Base model class
-```
-
-## Requirements
-
-- **Node.js**: v24 (specified in `.cursor/environment.json`)
+- **Node.js**: v24 (use `.nvmrc` file)
 - **Package Manager**: pnpm
 - **Browser**: Modern browser with IndexedDB support
 
+### Setup
+
+1. **Install Node.js version 24** (if using nvm):
+   ```bash
+   nvm use
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   pnpm dev
+   ```
+
+4. **Open your browser**:
+   Navigate to `http://localhost:3000` (or the port shown in the terminal)
+
 ## Environment Variables
 
-Environment variables for database connections should be configured in `nuxt-drizzle-demo/.env` (to be created during implementation):
+Environment variables for database connections should be configured in `.env` (to be created during implementation):
 
 - Database connection details for Drizzle ORM
 - Any API keys or secrets required for backend operations
