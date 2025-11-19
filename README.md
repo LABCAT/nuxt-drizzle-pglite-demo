@@ -21,31 +21,43 @@ This project implements a hybrid data architecture:
 ### Setup
 
 1. **Install Node.js version 24** (if using nvm):
+
    ```bash
    nvm use
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
-3. **Start the development server**:
+3. **Configure environment variables**:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then edit `.env` and fill in your database connection details.
+
+4. **Start the development server**:
+
    ```bash
    pnpm dev
    ```
 
-4. **Open your browser**:
+5. **Open your browser**:
    Navigate to `http://localhost:3000` (or the port shown in the terminal)
 
 ## Environment Variables
 
-Environment variables for database connections should be configured in `.env` (to be created during implementation):
+Environment variables are configured in `.env` (copy from `.env.example`):
 
-- Database connection details for Drizzle ORM
-- Any API keys or secrets required for backend operations
+- **`DATABASE_URL`**: PostgreSQL connection string for Drizzle ORM
+  - Format: `postgresql://user:password@host:port/database`
+  - This is used by the Drizzle HTTP proxy in `server/api/drizzle.ts` to connect to the remote Postgres database
 
-**Note**: Never commit sensitive credentials to version control. Use `.env` files (which should be in `.gitignore`) or secure environment variable management.
+**Note**: Never commit sensitive credentials to version control. The `.env` file should be in `.gitignore` and is not tracked by git.
 
 ## Implementation Tasks
 
@@ -61,13 +73,35 @@ See `agent/TASKS.md` for the step-by-step implementation plan. Tasks are designe
 ## Key Technologies
 
 - **Nuxt 3**: Vue.js framework for SPA development
-- **Drizzle ORM**: TypeScript ORM for Postgres
+- **Drizzle ORM**: TypeScript ORM for Postgres (`drizzle-orm`, `drizzle-kit`)
+- **Postgres Driver**: `postgres` package for database connections
 - **PGLite**: Client-side Postgres-compatible database
 - **IndexedDB**: Browser storage backend for PGLite
+
+## Drizzle Setup
+
+The project uses Drizzle ORM to interact with a remote Postgres database through a Nuxt API proxy:
+
+- **Database Client**: `server/utils/db.ts` - Drizzle client instance configured with Postgres connection
+- **HTTP Proxy**: `server/api/drizzle.ts` - API endpoint that proxies Drizzle operations from client to server
+- **Connection**: Configured via `DATABASE_URL` environment variable
+
+The Drizzle client is initialized using the `postgres` driver and is available server-side only. Client-side code communicates with the database through the HTTP proxy endpoint at `/api/drizzle`.
+
+### Database Introspection
+
+To introspect an existing PostgreSQL database and generate Drizzle schema files:
+
+Run the introspection command:
+
+```bash
+pnpm drizzle-kit introspect
+```
+
+This will connect to your database using the `DATABASE_URL` from `.env`, analyze the existing database schema, and generate TypeScript schema files in `server/db/schema.ts`.
 
 ## Security
 
 - All security scans are performed using Snyk (see `.cursor/rules/snyk_rules.mdc`)
 - Database credentials must never be embedded in client-side code
 - All database operations go through the HTTP proxy in `server/api/`
-
