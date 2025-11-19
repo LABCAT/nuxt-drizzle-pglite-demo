@@ -17,10 +17,12 @@ globs:
 
 # File Structure Conventions
 
-- Server-side code: server/api/
-- Client utility code: utils/
-- Model classes: models/
-- Local DB adapter: utils/pgliteClient.ts
+**Note**: All paths below are relative to the Nuxt project root (`nuxt-drizzle-demo/` directory).
+
+- Server-side code: `server/api/`
+- Client utility code: `utils/`
+- Model classes: `models/`
+- Local DB adapter: `utils/pgliteClient.ts`
 - Use Drizzle query builder or typed API rather than raw string SQL where possible
 
 # Task Behavior
