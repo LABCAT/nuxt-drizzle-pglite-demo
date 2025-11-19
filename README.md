@@ -30,42 +30,29 @@ This project implements a hybrid data architecture:
    pnpm install
    ```
 
-3. **Start the development server**:
+3. **Configure environment variables**:
+   ```bash
+   cp .env.example .env
+   ```
+   Then edit `.env` and fill in your database connection details.
+
+4. **Start the development server**:
    ```bash
    pnpm dev
    ```
 
-4. **Open your browser**:
+5. **Open your browser**:
    Navigate to `http://localhost:3000` (or the port shown in the terminal)
 
 ## Environment Variables
 
-Environment variables for database connections should be configured in `.env` (to be created during implementation):
-
-### Required Variables
+Environment variables are configured in `.env` (copy from `.env.example`):
 
 - **`DATABASE_URL`**: PostgreSQL connection string for Drizzle ORM
   - Format: `postgresql://user:password@host:port/database`
-  - Example: `postgresql://postgres:password@localhost:5432/mydb`
   - This is used by the Drizzle HTTP proxy in `server/api/drizzle.ts` to connect to the remote Postgres database
 
-### Optional Variables
-
-- Any API keys or secrets required for backend operations
-
-**Note**: Never commit sensitive credentials to version control. Use `.env` files (which should be in `.gitignore`) or secure environment variable management.
-
-### Setting Up Environment Variables
-
-1. Create a `.env` file in the project root:
-   ```bash
-   touch .env
-   ```
-
-2. Add your database connection string:
-   ```
-   DATABASE_URL=postgresql://user:password@host:port/database
-   ```
+**Note**: Never commit sensitive credentials to version control. The `.env` file should be in `.gitignore` and is not tracked by git.
 
 ## Implementation Tasks
 
