@@ -5,7 +5,7 @@ Guidelines:
 1. Read and follow the tasks in agent/TASKS.md, **one task per branch**.
 2. Follow the architecture and data rules in .cursor/rules/architecture.mdc strictly.
 3. For each task:
-   - Cursor will automatically create a branch when you start (typically \`cursor/<task-description>\`).
+   - Cursor will automatically create a branch when you start (typically `cursor/<task-description>`).
    - If possible, mention the task name in your initial prompt to help Cursor name the branch appropriately.
    - Run the exact commands specified in the task.
    - Create/edit the files at the paths given.
@@ -17,5 +17,5 @@ Guidelines:
 6. Do not add secrets, credentials, or sensitive information in source code.
 7. Tasks must be atomic; complete one task fully before moving to the next.
 8. If unsure, do not guess—ask for clarification instead of committing potentially breaking changes.
-9. For PGLite initialization, ensure IndexedDB persistence is configured (use \`idb://nuxt-drizzle-cache\` protocol).
+9. For PGLite initialization, ensure IndexedDB persistence is configured (use `idb://nuxt-drizzle-cache` protocol).
 10. After completing a task, wait for PR approval before starting the next task.

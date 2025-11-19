@@ -1,7 +1,10 @@
 {
   "nodeVersion": "24",
   "pnpmCommand": "pnpm",
-  "ports": {
-    "nuxtDev": 3000
-  }
+  "ports": [
+    {
+      "name": "nuxtDev",
+      "port": 3000
+    }
+  ]
 }
