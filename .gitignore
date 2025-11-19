@@ -48,3 +48,4 @@ coverage/
 
 # PGLite IndexedDB (browser storage - not committed)
 # Note: IndexedDB is browser-specific and shouldn't be in git
+server/db/

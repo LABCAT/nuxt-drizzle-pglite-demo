@@ -21,22 +21,27 @@ This project implements a hybrid data architecture:
 ### Setup
 
 1. **Install Node.js version 24** (if using nvm):
+
    ```bash
    nvm use
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure environment variables**:
+
    ```bash
    cp .env.example .env
    ```
+
    Then edit `.env` and fill in your database connection details.
 
 4. **Start the development server**:
+
    ```bash
    pnpm dev
    ```
@@ -83,9 +88,20 @@ The project uses Drizzle ORM to interact with a remote Postgres database through
 
 The Drizzle client is initialized using the `postgres` driver and is available server-side only. Client-side code communicates with the database through the HTTP proxy endpoint at `/api/drizzle`.
 
+### Database Introspection
+
+To introspect an existing PostgreSQL database and generate Drizzle schema files:
+
+Run the introspection command:
+
+```bash
+pnpm drizzle-kit introspect
+```
+
+This will connect to your database using the `DATABASE_URL` from `.env`, analyze the existing database schema, and generate TypeScript schema files in `server/db/schema.ts`.
+
 ## Security
 
 - All security scans are performed using Snyk (see `.cursor/rules/snyk_rules.mdc`)
 - Database credentials must never be embedded in client-side code
 - All database operations go through the HTTP proxy in `server/api/`
-
