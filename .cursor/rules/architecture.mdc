@@ -17,7 +17,7 @@ globs:
 
 # File Structure Conventions
 
-**Note**: All paths below are relative to the Nuxt project root (`nuxt-drizzle-demo/` directory).
+**Note**: All paths below are relative to the Nuxt project root (repository root directory).
 
 - Server-side code: `server/api/`
 - Client utility code: `utils/`

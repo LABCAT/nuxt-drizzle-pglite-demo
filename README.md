@@ -12,10 +12,10 @@ This project implements a hybrid data architecture:
 
 ## Project Structure
 
-The Nuxt application will be created in the `nuxt-drizzle-demo/` subdirectory:
+The Nuxt application is created in the repository root directory:
 
 ```
-pglite-demo/
+.
 ├── agent/
 │   ├── AGENT_PROMPTS.md    # Agent guidelines
 │   └── TASKS.md            # Implementation tasks
@@ -23,12 +23,11 @@ pglite-demo/
 │   └── rules/
 │       ├── architecture.mdc  # Architecture rules
 │       └── snyk_rules.mdc    # Security rules
-└── nuxt-drizzle-demo/       # Nuxt project (created in Task 1)
-    ├── server/api/          # Backend API routes
-    ├── utils/               # Client utilities
-    │   └── pgliteClient.ts  # PGLite client adapter
-    └── models/              # Model classes
-        └── Model.ts         # Base model class
+├── server/api/             # Backend API routes
+├── utils/                  # Client utilities
+│   └── pgliteClient.ts     # PGLite client adapter
+└── models/                 # Model classes
+    └── Model.ts            # Base model class
 ```
 
 ## Requirements
@@ -39,7 +38,7 @@ pglite-demo/
 
 ## Environment Variables
 
-Environment variables for database connections should be configured in `nuxt-drizzle-demo/.env` (to be created during implementation):
+Environment variables for database connections should be configured in `.env` (to be created during implementation):
 
 - Database connection details for Drizzle ORM
 - Any API keys or secrets required for backend operations
