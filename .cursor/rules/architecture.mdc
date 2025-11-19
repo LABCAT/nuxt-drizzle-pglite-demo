@@ -1,0 +1,30 @@
+---
+description: "Define the architecture and persistent-data policy for the Nuxt-Drizzle PoC"
+alwaysApply: true
+globs:
+  - "**/*.ts"
+  - "**/*.js"
+---
+
+# Architecture & Data Sync Rules
+
+- The project is a Nuxt SPA with a backend proxy in Nuxt API routes.
+- The backend (Nuxt API) uses Drizzle ORM to talk to a remote Postgres database.
+- There is also a client-side PGLite local database for caching "today's data."
+- Data persistence in PGLite must reflect real server state; do not create mock or fake data purely for tests.
+- Model save() methods should first save to Postgres via Drizzle HTTP proxy, then write to PGLite only once the remote save succeeds.
+- Do not bypass the HTTP proxy by embedding raw database credentials in the client.
+
+# File Structure Conventions
+
+- Server-side code: server/api/
+- Client utility code: utils/
+- Model classes: models/
+- Local DB adapter: utils/pgliteClient.ts
+- Use Drizzle query builder or typed API rather than raw string SQL where possible
+
+# Task Behavior
+
+- Each agent task should be atomic. After creating a file, run a verification command.
+- Do not generate large sections of boilerplate in one commit — incrementally build.
+- If asked to scaffold something (e.g. model classes), generate minimal stub + verification.
