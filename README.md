@@ -10,31 +10,33 @@ This project implements a hybrid data architecture:
 - **Frontend**: Nuxt SPA with client-side PGLite database for caching "today's data" in IndexedDB
 - **Data Sync**: Model `save()` methods persist to Postgres first via HTTP proxy, then sync to PGLite only after successful remote save
 
-## Project Structure
+## Getting Started
 
-The Nuxt application is created in the repository root directory:
+### Prerequisites
 
-```
-.
-├── agent/
-│   ├── AGENT_PROMPTS.md    # Agent guidelines
-│   └── TASKS.md            # Implementation tasks
-├── .cursor/
-│   └── rules/
-│       ├── architecture.mdc  # Architecture rules
-│       └── snyk_rules.mdc    # Security rules
-├── server/api/             # Backend API routes
-├── utils/                  # Client utilities
-│   └── pgliteClient.ts     # PGLite client adapter
-└── models/                 # Model classes
-    └── Model.ts            # Base model class
-```
-
-## Requirements
-
-- **Node.js**: v24 (specified in `.cursor/environment.json`)
+- **Node.js**: v24 (use `.nvmrc` file)
 - **Package Manager**: pnpm
 - **Browser**: Modern browser with IndexedDB support
+
+### Setup
+
+1. **Install Node.js version 24** (if using nvm):
+   ```bash
+   nvm use
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   pnpm dev
+   ```
+
+4. **Open your browser**:
+   Navigate to `http://localhost:3000` (or the port shown in the terminal)
 
 ## Environment Variables
 
