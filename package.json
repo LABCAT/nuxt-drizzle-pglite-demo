@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
     "drizzle-orm": "0.44.7",
     "nuxt": "^4.2.1",
     "postgres": "3.4.7",
