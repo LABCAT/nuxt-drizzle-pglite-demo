@@ -1,5 +1,5 @@
-import { drizzle } from 'drizzle-orm/postgres-js'
-import postgres from 'postgres'
+import { drizzle } from 'drizzle-orm/node-postgres'
+import { Pool } from 'pg'
 
 // Database connection string from environment variables
 // Format: postgresql://user:password@host:port/database
@@ -9,8 +9,11 @@ if (!connectionString) {
   console.warn('DATABASE_URL environment variable is not set. Database operations will fail.')
 }
 
-// Create postgres client (connection pool)
-const client = postgres(connectionString)
+// Create pg pool
+export const pool = new Pool({
+  connectionString,
+  ssl: { rejectUnauthorized: false },
+})
 
 // Create Drizzle instance
-export const db = drizzle(client)
+export const db = drizzle(pool)
